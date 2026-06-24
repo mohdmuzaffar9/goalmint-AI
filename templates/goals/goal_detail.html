@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Goal Details</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+                <h2 class="mb-4">
+                    {{ goal.title }}
+                </h2>
+
+                <p>
+                    <strong>Description:</strong>
+                    {{ goal.description }}
+                </p>
+
+                <p>
+                    <strong>Goal Type:</strong>
+                    {{ goal.goal_type }}
+                </p>
+
+                <p>
+                    <strong>Category:</strong>
+                    {{ goal.goal_category }}
+                </p>
+
+                <p>
+                    <strong>Priority:</strong>
+                    {{ goal.priority }}
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    {{ goal.status }}
+                </p>
+
+                <p>
+                    <strong>Daily Hours:</strong>
+                    {{ goal.daily_hours }}
+                </p>
+
+                <p>
+                    <strong>Target Date:</strong>
+                    {{ goal.target_date }}
+                </p>
+
+                <p>
+                    <strong>Success Probability:</strong>
+                    {{ goal.success_probability }}%
+                </p>
+
+                <div class="mt-4">
+
+                    <a href="/goals/{{ goal.id }}/roadmap/" class="btn btn-primary">
+                        View Roadmap
+                    </a>
+
+                    <a href="/goals/my-goals/" class="btn btn-secondary">
+                        Back to Goals
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

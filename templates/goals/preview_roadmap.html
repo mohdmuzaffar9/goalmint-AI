@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Roadmap Preview</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+                <h2>
+                    AI Roadmap Preview
+                </h2>
+
+                <hr>
+
+                <h5>
+                    Goal:
+                    {{ goal_data.title }}
+                </h5>
+
+                <ul>
+
+                    {% for step in roadmap_steps %}
+
+                    <li>
+                        {{ step }}
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+                <a href="/goals/accept-roadmap/" class="btn btn-success">
+                    Accept Roadmap
+                </a>
+
+
+                <button class="btn btn-warning">
+                    Edit Roadmap
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
