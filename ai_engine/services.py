@@ -42,3 +42,32 @@ def generate_roadmap(goal_data):
     )
 
     return response.text
+
+def generate_tasks(goal_title, roadmap_phase):
+
+    model = genai.GenerativeModel(
+        'models/gemini-2.5-flash'
+    )
+
+    prompt = f"""
+    Create actionable learning tasks.
+
+    Goal:
+    {goal_title}
+
+    Roadmap Phase:
+    {roadmap_phase}
+
+    Return only 6 tasks.
+
+    One task per line.
+
+    No numbering.
+    No explanations.
+    """
+
+    response = model.generate_content(
+        prompt
+    )
+
+    return response.text

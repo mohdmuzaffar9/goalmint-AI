@@ -1,3 +1,5 @@
+from urllib import request
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
@@ -131,19 +133,40 @@ def preview_roadmap_view(request):
     if not goal_data:
         return redirect('create_goal')
 
-    roadmap_text = generate_roadmap(
-        goal_data
-    )
+    if 'roadmap_steps' in request.session:
 
-    roadmap_steps = [
-        step.strip()
-        for step in roadmap_text.split('\n')
-        if step.strip()
-    ]
+        roadmap_steps = request.session[
+            'roadmap_steps'
+        ]
 
-    request.session[
-        'roadmap_steps'
-    ] = roadmap_steps
+    else:
+
+        try:
+
+            roadmap_text = generate_roadmap(
+                goal_data
+            )
+
+            roadmap_steps = [
+                step.strip()
+                for step in roadmap_text.split('\n')
+                if step.strip()
+            ]
+
+        except Exception:
+
+            roadmap_steps = [
+                "Learn Fundamentals",
+                "Learn Core Skills",
+                "Build Projects",
+                "Advanced Concepts",
+                "Portfolio Building",
+                "Interview Preparation",
+            ]
+
+        request.session[
+            'roadmap_steps'
+        ] = roadmap_steps
 
     return render(
         request,
@@ -153,7 +176,6 @@ def preview_roadmap_view(request):
             'roadmap_steps': roadmap_steps,
         }
     )
-
 @login_required
 def roadmap_view(request, goal_id):
 

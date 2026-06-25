@@ -9,4 +9,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
 
     path('goals/', include('goals.urls')),
+
+    path('tasks/', include('tasks.urls')),
+
 ]
