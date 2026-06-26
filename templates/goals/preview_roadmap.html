@@ -26,26 +26,33 @@
                     {{ goal_data.title }}
                 </h5>
 
-                <ul>
+                <form method="POST">
+
+                    {% csrf_token %}
 
                     {% for step in roadmap_steps %}
 
-                    <li>
-                        {{ step }}
-                    </li>
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Phase {{ forloop.counter }}
+                        </label>
+
+                        <input type="text" name="phase_{{ forloop.counter }}" value="{{ step }}" class="form-control">
+
+                    </div>
 
                     {% endfor %}
 
-                </ul>
+                    <button type="submit" class="btn btn-warning">
+                        Edit & Save Changes
+                    </button>
 
-                <a href="/goals/accept-roadmap/" class="btn btn-success">
-                    Accept Roadmap
-                </a>
+                    <a href="/goals/accept-roadmap/" class="btn btn-success">
+                        Accept Roadmap
+                    </a>
 
-
-                <button class="btn btn-warning">
-                    Edit Roadmap
-                </button>
+                </form>
 
             </div>
 

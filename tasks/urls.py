@@ -9,4 +9,6 @@ urlpatterns = [
 
     path('<int:roadmap_id>/',views.task_list_view,name='task_list'),
 
+    path('status/<int:task_id>/',views.update_task_status_view,name='update_task_status'),
+
 ]

@@ -29,6 +29,7 @@
                     <th>Category</th>
                     <th>Priority</th>
                     <th>Status</th>
+                    <th>Risk</th>
                     <th>Target Date</th>
                     <th>Action</th>
                 </tr>
@@ -45,18 +46,83 @@
                     <td>{{ goal.goal_type }}</td>
                     <td>{{ goal.goal_category }}</td>
                     <td>{{ goal.priority }}</td>
-                    <td>{{ goal.status }}</td>
+                    <td>
+
+                        {% if goal.status == 'Active' %}
+
+                        <span class="badge bg-success">
+                            Active
+                        </span>
+
+                        {% elif goal.status == 'Paused' %}
+
+                        <span class="badge bg-warning">
+                            Paused
+                        </span>
+
+                        {% else %}
+
+                        <span class="badge bg-primary">
+                            Completed
+                        </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        {% if goal.risk_level == 'High Risk' %}
+
+                        <span class="badge bg-danger">
+                            High Risk
+                        </span>
+
+                        {% elif goal.risk_level == 'Medium Risk' %}
+
+                        <span class="badge bg-warning text-dark">
+                            Medium Risk
+                        </span>
+
+                        {% elif goal.risk_level == 'Paused' %}
+
+                        <span class="badge bg-dark">
+                            Paused
+                        </span>
+
+                        {% elif goal.risk_level == 'Completed' %}
+
+                        <span class="badge bg-primary">
+                            Completed
+                        </span>
+
+                        {% else %}
+
+                        <span class="badge bg-success">
+                            Low Risk
+                        </span>
+
+                        {% endif %}
+
+                    </td>
+
                     <td>{{ goal.target_date }}</td>
+
                     <td>
                         <a href="/goals/{{ goal.id }}/" class="btn btn-info btn-sm">
-                            View Details 
+                            View Details
                         </a>
 
                         <a href="/goals/{{ goal.id }}/edit/" class="btn btn-warning btn-sm">
                             Edit
-                        </a>    
-                        
-                    </td>    
+                        </a>
+
+                        <a href="/goals/{{ goal.id }}/delete/" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Delete this goal?')">
+                            Delete
+                        </a>
+
+                    </td>
 
 
 
@@ -66,7 +132,7 @@
 
                 <tr>
 
-                    <td colspan="7" class="text-center">
+                    <td colspan="8" class="text-center">
                         No goals found.
                     </td>
 

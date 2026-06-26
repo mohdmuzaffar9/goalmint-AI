@@ -13,6 +13,26 @@ def generate_tasks_view(request, roadmap_id):
         id=roadmap_id
     )
 
+    if request.method == 'POST':
+        edited_tasks = []
+
+        for key, value in request.POST.items():
+
+            if key.startswith('task_'):
+
+                edited_tasks.append(
+                    value.strip()
+                )
+
+        request.session[
+            f"tasks_{roadmap_id}"
+        ] = edited_tasks
+
+        return redirect(
+            'generate_tasks',
+            roadmap_id=roadmap.id
+        )
+
     existing_tasks = Task.objects.filter(
     roadmap=roadmap
     )
@@ -129,4 +149,25 @@ def accept_tasks_view(request, roadmap_id):
     return redirect(
         'task_list',
         roadmap_id=roadmap.id
+    )
+
+@login_required
+def update_task_status_view(request, task_id):
+
+    task = Task.objects.get(
+        id=task_id,
+        user=request.user
+    )
+
+    if request.method == "POST":
+
+        task.status = request.POST.get(
+            "status"
+        )
+
+        task.save()
+
+    return redirect(
+        "task_list",
+        roadmap_id=task.roadmap.id
     )

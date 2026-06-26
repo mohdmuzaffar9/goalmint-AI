@@ -27,3 +27,24 @@ class GoalForm(forms.ModelForm):
             )
         }
 
+class GoalUpdateForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Goal
+
+        fields = [
+            'priority',
+            'status',
+            'daily_hours',
+            'target_date',
+        ]
+
+        widgets = {
+            'target_date': forms.DateInput(
+                attrs={
+                    'type': 'date'
+                }
+            )
+        }
+

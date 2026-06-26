@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from datetime import date
+
 
 class Goal(models.Model):
 
@@ -89,8 +91,90 @@ class Goal(models.Model):
         auto_now=True
     )
 
+    @property
+    def risk_level(self):
+
+        if self.status == 'Completed':
+            return 'Completed'
+        
+        if self.status == 'Paused':
+            return 'Paused' 
+        
+        days_left = (
+            self.target_date - date.today()
+        ).days
+
+        if self.goal_type == 'Short Term':
+
+            if days_left <= 3:
+                return 'High Risk'
+
+            elif days_left <= 7:
+                return 'Medium Risk'
+
+            return 'Low Risk'
+
+        else:  # Long Term
+
+            if days_left <= 15:
+                return 'High Risk'
+
+            elif days_left <= 30:
+                return 'Medium Risk'
+
+            return 'Low Risk'
+
+
     def __str__(self):
         return self.title
+    
+    @property
+    def progress(self):
+
+        total_tasks = self.tasks.count()
+
+        if total_tasks == 0:
+            return 0
+
+        completed_tasks = self.tasks.filter(
+            status="Completed"
+        ).count()
+
+        return int(
+            (completed_tasks / total_tasks) * 100
+        )
+    
+    @property
+    def completed_tasks(self):
+
+        return self.tasks.filter(
+            status="Completed"
+        ).count()
+
+
+    @property
+    def total_tasks(self):
+
+        return self.tasks.count()
+
+
+    @property
+    def completed_roadmaps(self):
+
+        completed = 0
+
+        for roadmap in self.roadmaps.all():
+
+            if roadmap.status == "Completed":
+                completed += 1
+
+        return completed
+
+
+    @property
+    def total_roadmaps(self):
+
+        return self.roadmaps.count()
 
 
 class Roadmap(models.Model):
@@ -125,3 +209,23 @@ class Roadmap(models.Model):
 
     def __str__(self):
         return f"{self.goal.title} - {self.title}"
+    
+    @property
+    def status(self):
+
+        total_tasks = self.tasks.count()
+
+        if total_tasks == 0:
+            return "Not Started"
+
+        completed_tasks = self.tasks.filter(
+            status="Completed"
+        ).count()
+
+        if completed_tasks == 0:
+            return "Not Started"
+
+        if completed_tasks == total_tasks:
+            return "Completed"
+
+        return "In Progress"

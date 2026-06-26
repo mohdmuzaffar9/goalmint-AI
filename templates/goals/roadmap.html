@@ -2,9 +2,11 @@
 <html>
 
 <head>
+
     <title>Roadmap</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -17,16 +19,47 @@
 
         {% for phase in roadmaps %}
 
-        <div class="card mb-3 shadow-sm">
+        <div class="card mb-4 shadow-sm">
 
             <div class="card-body">
 
-                <h5>
-                    Phase {{ phase.order }}
-                </h5>
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <h5 class="mb-0">
+                        Phase {{ phase.order }}
+                    </h5>
+
+                    {% if phase.status == "Completed" %}
+
+                    <span class="badge bg-success">
+                        Completed
+                    </span>
+
+                    {% elif phase.status == "In Progress" %}
+
+                    <span class="badge bg-warning text-dark">
+                        In Progress
+                    </span>
+
+                    {% else %}
+
+                    <span class="badge bg-secondary">
+                        Not Started
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+                <hr>
+
+                <p class="mb-3">
+                    {{ phase.title }}
+                </p>
 
                 <p>
-                    {{ phase.title }}
+                    <strong>Status :</strong>
+                    {{ phase.status }}
                 </p>
 
                 <div class="mt-3">

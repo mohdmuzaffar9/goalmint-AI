@@ -3,7 +3,7 @@ from urllib import request
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from .forms import GoalForm
+from .forms import GoalForm, GoalUpdateForm
 from .models import Goal, Roadmap
 from datetime import datetime
 
@@ -132,6 +132,23 @@ def preview_roadmap_view(request):
 
     if not goal_data:
         return redirect('create_goal')
+    
+    if request.method == 'POST':
+        edited_steps = []
+
+        for key, value in request.POST.items():
+            if key.startswith('phase_'):
+                edited_steps.append(
+                    value.strip()
+                )
+
+        request.session[
+            'roadmap_steps'
+        ] = edited_steps
+
+        return redirect(
+            'preview_roadmap'
+        )
 
     if 'roadmap_steps' in request.session:
 
@@ -195,4 +212,57 @@ def roadmap_view(request, goal_id):
             'goal': goal,
             'roadmaps': roadmaps
         }
+    )
+
+@login_required
+def edit_goal_view(request, goal_id):
+
+    goal = Goal.objects.get(
+        id=goal_id,
+        user=request.user
+    )
+
+    if request.method == 'POST':
+
+        form = GoalUpdateForm(
+            request.POST,
+            instance=goal
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect(
+                'goal_detail',
+                goal_id=goal.id
+            )
+
+    else:
+
+        form = GoalUpdateForm(
+            instance=goal
+        )
+
+    return render(
+        request,
+        'goals/edit_goal.html',
+        {
+            'form': form,
+            'goal': goal
+        }
+    )
+
+@login_required
+def delete_goal_view(request, goal_id):
+
+    goal = Goal.objects.get(
+        id=goal_id,
+        user=request.user
+    )
+
+    goal.delete()
+
+    return redirect(
+        'my_goals'
     )
