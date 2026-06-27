@@ -1,0 +1,47 @@
+.form-control,
+.form-select{
+
+    border-radius:12px;
+
+    padding:12px 14px;
+
+    border:1px solid #CBD5E1;
+
+    box-shadow:none;
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#2563EB;
+
+    box-shadow:0 0 0 .2rem rgba(37,99,235,.15);
+
+}
+
+textarea.form-control{
+
+    min-height:130px;
+
+    resize:vertical;
+
+}
+
+.form-label{
+
+    margin-bottom:8px;
+
+    color:#334155;
+
+}
+
+.btn{
+
+    border-radius:12px;
+
+    padding:10px 20px;
+
+    font-weight:600;
+
+}

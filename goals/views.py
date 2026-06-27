@@ -51,13 +51,44 @@ def my_goals_view(request):
 
     goals = Goal.objects.filter(
         user=request.user
-    ).order_by('-created_at')
+    ).order_by("-created_at")
+
+    # Search
+    search = request.GET.get("search")
+
+    if search:
+        goals = goals.filter(
+            title__icontains=search
+        )
+
+    goal_type = request.GET.get("goal_type")
+
+    if goal_type:
+        goals = goals.filter(
+            goal_type=goal_type
+        )    
+
+    # Status Filter
+    status = request.GET.get("status")
+
+    if status:
+        goals = goals.filter(
+            status=status
+        )
+
+    # Priority Filter
+    priority = request.GET.get("priority")
+
+    if priority:
+        goals = goals.filter(
+            priority=priority
+        )
 
     return render(
         request,
-        'goals/my_goals.html',
+        "goals/my_goals.html",
         {
-            'goals': goals
+            "goals": goals,
         }
     )
 

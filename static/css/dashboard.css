@@ -1,0 +1,133 @@
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+.page-title{
+
+    font-size:32px;
+
+    font-weight:700;
+
+    margin:0;
+
+    color:#0F172A;
+
+}
+
+.page-subtitle{
+
+    color:#64748B;
+
+    margin-top:6px;
+
+}
+
+.grid-3{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:24px;
+
+}
+
+.content-card{
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:24px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+
+    border:1px solid #E2E8F0;
+
+    transition:.25s;
+
+}
+
+.content-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.content-card h2{
+
+    font-weight:700;
+
+}
+
+.progress{
+
+    height:10px;
+
+    border-radius:20px;
+
+    background:#E5E7EB;
+
+}
+
+.progress-bar{
+
+    background:#2563EB;
+
+}
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table thead th{
+
+    color:#64748B;
+
+    font-weight:600;
+
+    border:none;
+
+}
+
+.table tbody td{
+
+    vertical-align:middle;
+
+}
+
+.badge{
+
+    padding:8px 12px;
+
+    border-radius:30px;
+
+    font-weight:500;
+
+}
+
+.list-group-item{
+
+    border:none;
+
+    padding-left:0;
+
+    padding-right:0;
+
+}

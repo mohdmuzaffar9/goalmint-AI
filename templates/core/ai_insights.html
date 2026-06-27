@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <h2 class="page-title">
+
+            AI Insights
+
+        </h2>
+
+        <p class="page-subtitle">
+
+            Personalized recommendations based on your goals and progress.
+
+        </p>
+
+    </div>
+
+</div>
+
+<div class="grid-3">
+
+    <div class="content-card">
+
+        <h6>Total Goals</h6>
+
+        <h2>{{ total_goals }}</h2>
+
+    </div>
+
+    <div class="content-card">
+
+        <h6>Completed Goals</h6>
+
+        <h2>{{ completed_goals }}</h2>
+
+    </div>
+
+    <div class="content-card">
+
+        <h6>Completed Tasks</h6>
+
+        <h2>{{ completed_tasks }}</h2>
+
+    </div>
+
+</div>
+
+<br>
+
+<div class="content-card">
+
+    <h5 class="mb-4">
+
+        ⚠ High Risk Goals
+
+    </h5>
+
+    {% if high_risk_goals %}
+
+        <ul class="list-group">
+
+            {% for goal in high_risk_goals %}
+
+            <li class="list-group-item d-flex justify-content-between">
+
+                {{ goal.title }}
+
+                <span class="badge bg-danger">
+
+                    {{ goal.risk_level }}
+
+                </span>
+
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+        <div class="alert alert-success mb-0">
+
+            🎉 Great! You don't have any high-risk goals.
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+<br>
+
+<div class="content-card">
+
+    <h5>
+
+        🤖 Smart Recommendations
+
+    </h5>
+
+    <hr>
+
+    <ul>
+
+        <li>Complete at least one task every day.</li>
+
+        <li>Prioritize High Priority goals.</li>
+
+        <li>Review your roadmap weekly.</li>
+
+        <li>Update task status regularly.</li>
+
+        <li>Maintain consistent daily study hours.</li>
+
+    </ul>
+
+</div>
+
+<br>
+
+<div class="content-card">
+
+    <h5>
+
+        🚀 AI Motivation
+
+    </h5>
+
+    <hr>
+
+    <blockquote class="blockquote mb-0">
+
+        "Success is built by consistent small improvements every day."
+
+    </blockquote>
+
+</div>
+
+{% endblock %}

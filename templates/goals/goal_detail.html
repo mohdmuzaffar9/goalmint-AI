@@ -1,73 +1,268 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>Goal Details</title>
+{% block content %}
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+<div class="page-header">
 
-<body>
+    <div>
 
-    <div class="container mt-5">
+        <h2 class="page-title">
+            {{ goal.title }}
+        </h2>
 
-        <div class="card shadow">
+        <p class="page-subtitle">
+            Goal Overview & Progress
+        </p>
 
-            <div class="card-body">
+    </div>
 
-                <h2 class="mb-4">
-                    {{ goal.title }}
-                </h2>
+    <div>
 
-                <p>
-                    <strong>Description:</strong>
-                    {{ goal.description }}
-                </p>
+        <a href="/goals/{{ goal.id }}/edit/" class="btn btn-warning">
 
-                <p>
-                    <strong>Goal Type:</strong>
-                    {{ goal.goal_type }}
-                </p>
+            <i class="bi bi-pencil-square me-2"></i>
 
-                <p>
-                    <strong>Category:</strong>
-                    {{ goal.goal_category }}
-                </p>
+            Edit Goal
 
-                <p>
-                    <strong>Priority:</strong>
-                    {{ goal.priority }}
-                </p>
+        </a>
 
-                <p>
-                    <strong>Status:</strong>
-                    {{ goal.status }}
-                </p>
+        <a href="/goals/{{ goal.id }}/delete/" class="btn btn-danger" onclick="return confirm('Delete this goal?')">
 
-                <p>
-                    <strong>Daily Hours:</strong>
-                    {{ goal.daily_hours }}
-                </p>
+            <i class="bi bi-trash me-2"></i>
 
-                <p>
-                    <strong>Target Date:</strong>
-                    {{ goal.target_date }}
-                </p>
+            Delete
 
-                <p>
-                    <strong>Success Probability:</strong>
-                    {{ goal.success_probability }}%
-                </p>
+        </a>
 
-                <div class="mt-4">
+    </div>
 
-                    <a href="/goals/{{ goal.id }}/roadmap/" class="btn btn-primary">
-                        View Roadmap
-                    </a>
+</div>
 
-                    <a href="/goals/my-goals/" class="btn btn-secondary">
-                        Back to Goals
-                    </a>
+
+
+<div class="row">
+
+    <div class="col-lg-8">
+
+        <div class="content-card mb-4">
+
+            <h4 class="mb-4">
+
+                Goal Information
+
+            </h4>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="text-muted">
+
+                        Goal Type
+
+                    </label>
+
+                    <h6>
+
+                        {{ goal.goal_type }}
+
+                    </h6>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="text-muted">
+
+                        Category
+
+                    </label>
+
+                    <h6>
+
+                        {{ goal.goal_category }}
+
+                    </h6>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="text-muted">
+
+                        Priority
+
+                    </label>
+
+                    <h6>
+
+                        {{ goal.priority }}
+
+                    </h6>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="text-muted">
+
+                        Daily Hours
+
+                    </label>
+
+                    <h6>
+
+                        {{ goal.daily_hours }} hrs/day
+
+                    </h6>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="text-muted">
+
+                        Target Date
+
+                    </label>
+
+                    <h6>
+
+                        {{ goal.target_date }}
+
+                    </h6>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="text-muted">
+
+                        AI Success Probability
+
+                    </label>
+
+                    <h6>
+
+                        {{ goal.success_probability }}%
+
+                    </h6>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h5>
+
+                Description
+
+            </h5>
+
+            <p class="text-muted">
+
+                {{ goal.description }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="col-lg-4">
+
+        <div class="content-card mb-4">
+
+            <h5 class="mb-3">
+
+                Goal Status
+
+            </h5>
+
+            <p>
+
+                <strong>Status</strong>
+
+            </p>
+
+            {% if goal.status == "Completed" %}
+
+            <span class="badge bg-success">
+
+                Completed
+
+            </span>
+
+            {% elif goal.status == "Paused" %}
+
+            <span class="badge bg-warning text-dark">
+
+                Paused
+
+            </span>
+
+            {% else %}
+
+            <span class="badge bg-primary">
+
+                Active
+
+            </span>
+
+            {% endif %}
+
+            <hr>
+
+            <p>
+
+                <strong>Risk</strong>
+
+            </p>
+
+            {% if goal.risk_level == "High Risk" %}
+
+            <span class="badge bg-danger">
+
+                High Risk
+
+            </span>
+
+            {% elif goal.risk_level == "Medium Risk" %}
+
+            <span class="badge bg-warning text-dark">
+
+                Medium Risk
+
+            </span>
+
+            {% else %}
+
+            <span class="badge bg-success">
+
+                {{ goal.risk_level }}
+
+            </span>
+
+            {% endif %}
+
+            <hr>
+
+            <p>
+
+                <strong>Progress</strong>
+
+            </p>
+
+            <div class="progress mb-2">
+
+                <div class="progress-bar" style="width:{{ goal.progress }}%;">
+
+                    {{ goal.progress }}%
 
                 </div>
 
@@ -75,8 +270,40 @@
 
         </div>
 
+
+
+        <div class="content-card">
+
+            <h5 class="mb-4">
+
+                Quick Actions
+
+            </h5>
+
+            <div class="d-grid gap-2">
+
+                <a href="/goals/{{ goal.id }}/roadmap/" class="btn btn-primary">
+
+                    <i class="bi bi-diagram-3 me-2"></i>
+
+                    View Roadmap
+
+                </a>
+
+                <a href="/goals/my-goals/" class="btn btn-outline-secondary">
+
+                    <i class="bi bi-arrow-left me-2"></i>
+
+                    Back to Goals
+
+                </a>
+
+            </div>
+
+        </div>
+
     </div>
 
-</body>
+</div>
 
-</html>
+{% endblock %}

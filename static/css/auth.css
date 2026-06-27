@@ -1,0 +1,189 @@
+/* ===========================
+   GoalMint AI Authentication
+=========================== */
+
+body{
+    margin:0;
+    padding:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#F8FAFC;
+}
+
+.auth-wrapper{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px 20px;
+
+}
+
+.auth-card{
+
+    width:100%;
+
+    max-width:520px;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    box-shadow:0 15px 35px rgba(15,23,42,.08);
+
+    border:1px solid #E2E8F0;
+
+}
+
+.auth-logo{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.auth-logo h2{
+
+    font-weight:700;
+
+    color:#2563EB;
+
+    margin-bottom:8px;
+
+}
+
+.auth-logo p{
+
+    color:#64748B;
+
+    margin:0;
+
+}
+
+.auth-title{
+
+    text-align:center;
+
+    font-weight:700;
+
+    margin-bottom:30px;
+
+}
+
+.auth-card label{
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+    color:#334155;
+
+}
+
+.auth-card input,
+.auth-card select,
+.auth-card textarea{
+
+    border-radius:12px !important;
+
+    border:1px solid #CBD5E1;
+
+    padding:12px 14px;
+
+    margin-bottom:18px;
+
+    box-shadow:none !important;
+
+}
+
+.auth-card input:focus,
+.auth-card select:focus{
+
+    border-color:#2563EB;
+
+}
+
+.auth-card ul{
+
+    padding-left:18px;
+
+    color:#EF4444;
+
+    font-size:14px;
+
+}
+
+.auth-card .helptext{
+
+    display:block;
+
+    font-size:13px;
+
+    color:#64748B;
+
+    margin-top:-10px;
+
+    margin-bottom:12px;
+
+}
+
+.auth-btn{
+
+    width:100%;
+
+    border-radius:12px;
+
+    padding:12px;
+
+    font-weight:600;
+
+}
+
+.auth-footer{
+
+    margin-top:25px;
+
+    text-align:center;
+
+    color:#64748B;
+
+}
+
+.auth-footer a{
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    color:#2563EB;
+
+}
+
+.auth-footer a:hover{
+
+    text-decoration:underline;
+
+}
+
+.alert{
+
+    border-radius:12px;
+
+}
+
+@media(max-width:576px){
+
+    .auth-card{
+
+        padding:25px;
+
+    }
+
+}

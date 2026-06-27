@@ -2,12 +2,476 @@
 
 {% block content %}
 
-<h1>
-    Dashboard
-</h1>
+<div class="page-header">
 
-<p>
-    Welcome {{ request.user.first_name }}
-</p>
+    <div>
+
+        <h2 class="page-title">
+            Dashboard
+        </h2>
+
+        <p class="page-subtitle">
+            Welcome back, {{ request.user.first_name|default:request.user.username }} 👋
+        </p>
+
+    </div>
+
+    <div>
+
+        <a href="{% url 'create_goal' %}" class="btn btn-primary">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Create Goal
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ================= Summary Cards ================= -->
+
+<div class="grid-3">
+
+    <div class="content-card">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+                <small class="text-secondary">
+                    Total Goals
+                </small>
+
+                <h2 class="mt-2">
+                    {{ total_goals }}
+                </h2>
+
+            </div>
+
+            <i class="bi bi-bullseye fs-1 text-primary"></i>
+
+        </div>
+
+    </div>
+
+    <div class="content-card">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+                <small class="text-secondary">
+                    Active Goals
+                </small>
+
+                <h2 class="mt-2 text-success">
+
+                    {{ active_goals }}
+
+                </h2>
+
+            </div>
+
+            <i class="bi bi-lightning-charge fs-1 text-success"></i>
+
+        </div>
+
+    </div>
+
+    <div class="content-card">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+                <small class="text-secondary">
+                    Completed Goals
+                </small>
+
+                <h2 class="mt-2 text-primary">
+
+                    {{ completed_goals }}
+
+                </h2>
+
+            </div>
+
+            <i class="bi bi-check-circle fs-1 text-primary"></i>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<br>
+
+
+<div class="grid-3">
+
+    <div class="content-card">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+                <small class="text-secondary">
+                    Completed Tasks
+                </small>
+
+                <h2 class="mt-2">
+
+                    {{ completed_tasks }}
+
+                </h2>
+
+            </div>
+
+            <i class="bi bi-list-check fs-1 text-success"></i>
+
+        </div>
+
+    </div>
+
+    <div class="content-card">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+                <small class="text-secondary">
+                    High Risk Goals
+                </small>
+
+                <h2 class="mt-2 text-danger">
+
+                    {{ high_risk_goals }}
+
+                </h2>
+
+            </div>
+
+            <i class="bi bi-exclamation-triangle fs-1 text-danger"></i>
+
+        </div>
+
+    </div>
+
+    <div class="content-card">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+                <small class="text-secondary">
+                    Productivity
+                </small>
+
+                <h2 class="mt-2">
+
+                    {{ completed_tasks }}
+
+                </h2>
+
+                <small class="text-muted">
+
+                    Tasks Finished
+
+                </small>
+
+            </div>
+
+            <i class="bi bi-graph-up-arrow fs-1 text-warning"></i>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<br>
+
+
+<!-- ================= Quick Actions ================= -->
+
+<div class="content-card">
+
+    <h5 class="mb-4">
+
+        Quick Actions
+
+    </h5>
+
+    <div class="d-flex flex-wrap gap-3">
+
+        <a href="{% url 'create_goal' %}" class="btn btn-primary">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Create Goal
+
+        </a>
+
+        <a href="{% url 'my_goals' %}" class="btn btn-outline-primary">
+
+            <i class="bi bi-bullseye"></i>
+
+            My Goals
+
+        </a>
+
+    </div>
+
+</div>
+
+<br>
+
+<!-- ================= Recent Goals ================= -->
+
+<div class="row">
+
+    <div class="col-lg-8">
+
+        <div class="content-card">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <h5 class="mb-0">
+                    Recent Goals
+                </h5>
+
+                <a href="{% url 'my_goals' %}" class="btn btn-sm btn-outline-primary">
+                    View All
+                </a>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Goal</th>
+                            <th>Status</th>
+                            <th>Risk</th>
+                            <th>Progress</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for goal in recent_goals %}
+
+                        <tr>
+
+                            <td>
+
+                                <strong>
+
+                                    {{ goal.title }}
+
+                                </strong>
+
+                                <br>
+
+                                <small class="text-muted">
+
+                                    {{ goal.goal_category }}
+
+                                </small>
+
+                            </td>
+
+                            <td>
+
+                                {% if goal.status == "Completed" %}
+
+                                <span class="badge bg-success">
+                                    Completed
+                                </span>
+
+                                {% elif goal.status == "Paused" %}
+
+                                <span class="badge bg-warning text-dark">
+                                    Paused
+                                </span>
+
+                                {% else %}
+
+                                <span class="badge bg-primary">
+                                    Active
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <td>
+
+                                {% if goal.risk_level == "High Risk" %}
+
+                                <span class="badge bg-danger">
+
+                                    High Risk
+
+                                </span>
+
+                                {% elif goal.risk_level == "Medium Risk" %}
+
+                                <span class="badge bg-warning text-dark">
+
+                                    Medium
+
+                                </span>
+
+                                {% elif goal.risk_level == "Low Risk" %}
+
+                                <span class="badge bg-success">
+
+                                    Low
+
+                                </span>
+
+                                {% else %}
+
+                                <span class="badge bg-secondary">
+
+                                    {{ goal.risk_level }}
+
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <td style="width:220px;">
+
+                                <div class="progress">
+
+                                    <div class="progress-bar" role="progressbar" style="width:{{ goal.progress }}%;">
+
+                                        {{ goal.progress }}%
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        {% empty %}
+
+                        <tr>
+
+                            <td colspan="4" class="text-center text-muted">
+
+                                No goals yet.
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="col-lg-4">
+
+        <div class="content-card mb-4">
+
+            <h5>
+
+                AI Insights
+
+            </h5>
+
+            <hr>
+
+            <ul class="list-group list-group-flush">
+
+                {% for insight in ai_insights %}
+
+                <li class="list-group-item">
+
+                    {{ insight }}
+
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+
+
+
+
+        <div class="content-card">
+
+            <h5>
+
+                Latest Activity
+
+            </h5>
+
+            <hr>
+
+            <ul class="list-group list-group-flush">
+
+                <li class="list-group-item">
+
+                    Dashboard opened
+
+                </li>
+
+                <li class="list-group-item">
+
+                    AI Goal Planner Ready
+
+                </li>
+
+                <li class="list-group-item">
+
+                    Progress Tracking Enabled
+
+                </li>
+
+                <li class="list-group-item">
+
+                    Roadmap Management Active
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

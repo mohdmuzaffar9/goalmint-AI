@@ -1,0 +1,19 @@
+.task-card{
+    background:#fff;
+    border:1px solid #E2E8F0;
+    border-radius:16px;
+    padding:22px;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+    transition:.25s;
+}
+
+.task-card:hover{
+    transform:translateY(-2px);
+}
+
+.task-check{
+    width:42px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}

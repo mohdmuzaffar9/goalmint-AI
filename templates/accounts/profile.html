@@ -1,0 +1,328 @@
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <h2 class="page-title">
+            My Profile
+        </h2>
+
+        <p class="page-subtitle">
+            View your account information and productivity overview.
+        </p>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-lg-4">
+
+        <div class="content-card profile-card text-center">
+
+            <img src="https://ui-avatars.com/api/?name={{ request.user.first_name|default:request.user.username }}&background=2563eb&color=fff&size=128"
+                class="profile-avatar" alt="Profile">
+
+            <h3 class="mt-3 mb-1">
+                {{ request.user.first_name }} {{ request.user.last_name }}
+            </h3>
+
+            <p class="text-muted mb-1">
+                {{ request.user.email }}
+            </p>
+
+            <span class="badge bg-primary">
+                GoalMint AI User
+            </span>
+
+            <hr>
+
+            <div class="row text-center">
+
+                <div class="col-6">
+
+                    <h5>{{ total_goals }}</h5>
+
+                    <small>Total Goals</small>
+
+                </div>
+
+                <div class="col-6">
+
+                    <h5>{{ completed_tasks }}</h5>
+
+                    <small>Completed Tasks</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-8">
+
+        <div class="content-card mb-4">
+
+            <h5 class="mb-4">
+
+                Account Information
+
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="text-muted">
+                        Full Name
+                    </label>
+
+                    <h6>
+
+                        {{ request.user.first_name }}
+                        {{ request.user.last_name }}
+
+                    </h6>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="text-muted">
+                        Email
+                    </label>
+
+                    <h6>
+
+                        {{ request.user.email }}
+
+                    </h6>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="text-muted">
+                        Username
+                    </label>
+
+                    <h6>
+
+                        {{ request.user.username }}
+
+                    </h6>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="text-muted">
+                        Member Since
+                    </label>
+
+                    <h6>
+
+                        {{ request.user.date_joined|date:"d M Y" }}
+
+                    </h6>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="content-card mb-4">
+
+            <h5 class="mb-4">
+
+                Study Preferences
+
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <h6>
+
+                        {{ profile.daily_available_hours }} Hours
+
+                    </h6>
+
+                    <small class="text-muted">
+
+                        Daily Study Time
+
+                    </small>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <h6>
+
+                        {{ profile.preferred_study_time }}
+
+                    </h6>
+
+                    <small class="text-muted">
+
+                        Preferred Time
+
+                    </small>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <h6>
+
+                        {{ profile.timezone }}
+
+                    </h6>
+
+                    <small class="text-muted">
+
+                        Time Zone
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="content-card mb-4">
+
+            <div class="d-flex justify-content-between mb-3">
+
+                <h5>
+
+                    Overall Progress
+
+                </h5>
+
+                <strong>
+
+                    {{ overall_progress }}%
+
+                </strong>
+
+            </div>
+
+            <div class="progress" style="height:12px;">
+
+                <div class="progress-bar bg-primary" style="width:{{ overall_progress }}%;"></div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="content-card text-center">
+
+                    <i class="bi bi-bullseye fs-1 text-primary"></i>
+
+                    <h3 class="mt-3">
+
+                        {{ active_goals }}
+
+                    </h3>
+
+                    <p class="text-muted">
+
+                        Active Goals
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="content-card text-center">
+
+                    <i class="bi bi-check-circle fs-1 text-success"></i>
+
+                    <h3 class="mt-3">
+
+                        {{ completed_goals }}
+
+                    </h3>
+
+                    <p class="text-muted">
+
+                        Completed Goals
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="content-card mt-4">
+
+            <h5>
+
+                AI Summary
+
+            </h5>
+
+            <hr>
+
+            <ul class="mb-0">
+
+                <li>
+
+                    You have completed
+                    <strong>{{ completed_tasks }}</strong>
+                    tasks.
+
+                </li>
+
+                <li>
+
+                    You currently have
+                    <strong>{{ active_goals }}</strong>
+                    active goals.
+
+                </li>
+
+                <li>
+
+                    Overall productivity is
+                    <strong>{{ overall_progress }}%</strong>.
+
+                </li>
+
+                <li>
+
+                    Keep updating your tasks regularly for better AI recommendations.
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+```

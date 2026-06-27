@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from goals.models import Roadmap
 from ai_engine.services import generate_tasks
 from tasks.models import Task
-
+from django.utils import timezone
+from goals.models import Goal
 
 @login_required
 def generate_tasks_view(request, roadmap_id):
@@ -161,13 +162,72 @@ def update_task_status_view(request, task_id):
 
     if request.method == "POST":
 
-        task.status = request.POST.get(
-            "status"
-        )
+        status = request.POST.get("status")
+
+        task.status = status
+
+        if status == "Completed":
+
+            task.completed_at = timezone.now()
+
+            task.completion_percentage = 100
+
+        elif status == "In Progress":
+
+            task.completed_at = None
+
+            task.completion_percentage = 50
+
+        else:
+
+            task.completed_at = None
+
+            task.completion_percentage = 0
 
         task.save()
+
+        goal = task.goal
+
+        if goal.progress == 100:
+            goal.status = "Completed"
+        else:
+            goal.status = "Active"
+
+        goal.save()
 
     return redirect(
         "task_list",
         roadmap_id=task.roadmap.id
+    )
+
+@login_required
+def all_tasks_view(request):
+
+    goals = Goal.objects.filter(
+        user=request.user
+    ).prefetch_related(
+        "roadmaps",
+        "tasks"
+    )
+
+    context = {
+
+        "goals": goals,
+
+        "total_goals": goals.count(),
+
+        "active_goals": goals.filter(
+            status="Active"
+        ).count(),
+
+        "completed_goals": goals.filter(
+            status="Completed"
+        ).count(),
+
+    }
+
+    return render(
+        request,
+        "tasks/all_tasks.html",
+        context
     )

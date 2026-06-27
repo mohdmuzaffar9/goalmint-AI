@@ -3,6 +3,8 @@ from . import views
 
 urlpatterns = [
 
+    path('all/', views.all_tasks_view, name='all_tasks'),
+
     path('generate/<int:roadmap_id>/',views.generate_tasks_view,name='generate_tasks'),
 
     path('accept/<int:roadmap_id>/',views.accept_tasks_view,name='accept_tasks'),

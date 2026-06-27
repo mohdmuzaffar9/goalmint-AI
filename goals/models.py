@@ -131,17 +131,15 @@ class Goal(models.Model):
     @property
     def progress(self):
 
-        total_tasks = self.tasks.count()
-
-        if total_tasks == 0:
+        if self.total_roadmaps == 0:
             return 0
 
-        completed_tasks = self.tasks.filter(
-            status="Completed"
-        ).count()
-
         return int(
-            (completed_tasks / total_tasks) * 100
+            (
+                self.completed_roadmaps
+                /
+                self.total_roadmaps
+            ) * 100
         )
     
     @property
@@ -209,6 +207,22 @@ class Roadmap(models.Model):
 
     def __str__(self):
         return f"{self.goal.title} - {self.title}"
+    
+    @property
+    def progress(self):
+
+        total_tasks = self.tasks.count()
+
+        if total_tasks == 0:
+            return 0
+
+        completed_tasks = self.tasks.filter(
+            status="Completed"
+        ).count()
+
+        return int(
+            (completed_tasks / total_tasks) * 100
+        )
     
     @property
     def status(self):

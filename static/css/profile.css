@@ -1,0 +1,133 @@
+/* ==============================
+   Profile Page
+================================= */
+
+.profile-card{
+
+    border-radius:16px;
+
+    padding:35px;
+
+}
+
+.profile-avatar{
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid #2563EB;
+
+    margin-bottom:15px;
+
+    box-shadow:0 10px 25px rgba(37,99,235,.18);
+
+}
+
+.profile-card h3{
+
+    font-weight:700;
+
+}
+
+.profile-card small{
+
+    color:#64748B;
+
+}
+
+.content-card{
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:24px;
+
+    box-shadow:0 8px 20px rgba(15,23,42,.06);
+
+    border:1px solid #eef2f7;
+
+}
+
+.content-card h5{
+
+    font-weight:700;
+
+}
+
+.content-card h6{
+
+    font-weight:600;
+
+    color:#0F172A;
+
+}
+
+.content-card label{
+
+    font-size:14px;
+
+    color:#64748B;
+
+    margin-bottom:6px;
+
+    display:block;
+
+}
+
+.progress{
+
+    border-radius:50px;
+
+    background:#E5E7EB;
+
+}
+
+.progress-bar{
+
+    border-radius:50px;
+
+}
+
+.profile-card .badge{
+
+    font-size:13px;
+
+    padding:8px 14px;
+
+}
+
+.content-card ul{
+
+    padding-left:20px;
+
+}
+
+.content-card ul li{
+
+    margin-bottom:12px;
+
+    color:#334155;
+
+}
+
+.content-card i{
+
+    color:#2563EB;
+
+}
+
+@media(max-width:991px){
+
+    .profile-card{
+
+        margin-bottom:25px;
+
+    }
+
+}
