@@ -23,12 +23,18 @@ load_dotenv()
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-mg=j@qww%=wu1s@+zsg0(u6!(wct=fr($0n66yr87@f6zbv8u*'
+SECRET_KEY = os.getenv(
+    "SECRET_KEY",
+    "django-insecure-mg=j@qww%=wu1s@+zsg0(u6!(wct=fr($0n66yr87@f6zbv8u*"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv(
+    "ALLOWED_HOSTS",
+    "*"
+).split(",")
 
 
 # Application definition
@@ -52,6 +58,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -131,7 +138,18 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_STORAGE = (
+    "whitenoise.storage.CompressedManifestStaticFilesStorage"
+)
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 GEMINI_API_KEY = os.getenv(
     'GEMINI_API_KEY'
 )
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 

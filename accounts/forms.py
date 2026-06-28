@@ -5,21 +5,51 @@ from django.contrib.auth.models import User
 class RegisterForm(forms.Form):
 
     first_name = forms.CharField(
-        max_length=100
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter First Name'
+            }
+        )  
     )
 
     last_name = forms.CharField(
-        max_length=100
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter Last Name'
+            }
+        )
     )
 
-    email = forms.EmailField()
-
-    password1 = forms.CharField(
-        widget=forms.PasswordInput
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter Email'
+            }
+        )
     )
 
-    password2 = forms.CharField(
-        widget=forms.PasswordInput
+
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter Password'
+            }
+        )
+    )
+
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Confirm Password'
+            }
+        )
     )
 
     def clean_email(self):
@@ -35,10 +65,10 @@ class RegisterForm(forms.Form):
     def clean(self):
         cleaned_data = super().clean()
 
-        password1 = cleaned_data.get('password1')
-        password2 = cleaned_data.get('password2')
+        password = cleaned_data.get('password')
+        confirm_password = cleaned_data.get('confirm_password')
 
-        if password1 and password2 and password1 != password2:
+        if password and confirm_password and password != confirm_password:
             raise forms.ValidationError(
                 "Passwords do not match."
             )
@@ -47,8 +77,20 @@ class RegisterForm(forms.Form):
     
 class LoginForm(forms.Form):
 
-    email = forms.EmailField()
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter Email'
+            }
+        )
+    )
 
     password = forms.CharField(
-        widget=forms.PasswordInput
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter Password'
+            }
+        )
     )
