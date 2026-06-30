@@ -141,7 +141,7 @@ To improve performance and reduce unnecessary API usage:
 
 ## 📸 Dashboard
 
-![](screenshots/dashboard-Screenshot%202026-06-29%20144533.png)
+![](screenshots/dashbaord-Screenshot%202026-06-29%20144533.png)
 
 ## 🎯 Create Goal
 
