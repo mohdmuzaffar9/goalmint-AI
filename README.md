@@ -141,32 +141,35 @@ To improve performance and reduce unnecessary API usage:
 
 ## 📸 Dashboard
 
-![](screenshots/dashboard.png)
+![](screenshots/dashboard-Screenshot%202026-06-29%20144533.png)
 
 ## 🎯 Create Goal
 
-![](screenshots/create-goal.png)
+![](screenshots/Screenshot%202026-06-30%20165313.png)
 
 ## 📋 My Goals
 
-![](screenshots/my-goals.png)
+![](screenshots/Mygoals-Screenshot%202026-06-29%20142050.png)
 
 ## 🗺️ AI Roadmap
 
-![](screenshots/roadmap.png)
+![](screenshots/roadmap-Screenshot%202026-06-29%20140615.png)
 
 ## ✅ Tasks
 
-![](screenshots/tasks.png)
+![](screenshots/tasks-Screenshot%202026-06-29%20140754.png)
 
 ## 🤖 AI Insights
 
-![](screenshots/ai-insights.png)
+![](screenshots/ai-insights-Screenshot%202026-06-29%20142116.png)
 
 ## 👤 Profile
 
-![](screenshots/profile.png)
+![](screenshots/profile-Screenshot%202026-06-29%20142146.png)
 
+## ✏️ Edit Goal
+
+![](screenshots/editgaols-Screenshot%202026-06-29%20140907.png)
 ## ✏️ Edit Goal
 
 ![](screenshots/edit-goal.png)
