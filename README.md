@@ -139,23 +139,37 @@ To improve performance and reduce unnecessary API usage:
 
 # 📱 Application Screenshots
 
-| Home | Dashboard |
-|------|-----------|
-| *(Add Screenshot)* | *(Add Screenshot)* |
+## 📸 Dashboard
 
-| Create Goal | My Goals |
-|-------------|----------|
-| *(Add Screenshot)* | *(Add Screenshot)* |
+![](screenshots/dashboard.png)
 
-| AI Roadmap | AI Tasks |
-|------------|----------|
-| *(Add Screenshot)* | *(Add Screenshot)* |
+## 🎯 Create Goal
 
-| Profile | AI Insights |
-|----------|-------------|
-| *(Add Screenshot)* | *(Add Screenshot)* |
+![](screenshots/create-goal.png)
 
----
+## 📋 My Goals
+
+![](screenshots/my-goals.png)
+
+## 🗺️ AI Roadmap
+
+![](screenshots/roadmap.png)
+
+## ✅ Tasks
+
+![](screenshots/tasks.png)
+
+## 🤖 AI Insights
+
+![](screenshots/ai-insights.png)
+
+## 👤 Profile
+
+![](screenshots/profile.png)
+
+## ✏️ Edit Goal
+
+![](screenshots/edit-goal.png)
 
 # 🔄 System Workflow
 
