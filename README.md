@@ -170,9 +170,7 @@ To improve performance and reduce unnecessary API usage:
 ## ✏️ Edit Goal
 
 ![](screenshots/editgaols-Screenshot%202026-06-29%20140907.png)
-## ✏️ Edit Goal
 
-![](screenshots/edit-goal.png)
 
 # 🔄 System Workflow
 
